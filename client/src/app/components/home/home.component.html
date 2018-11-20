@@ -1,0 +1,58 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .flex-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+</style>
+<div class="container-fluid">
+<div class="flex-container">
+  <div style="margin: 40px 50px 0 50px; display: flex; justify-content: center; flex-direction: column">
+    <h1>Remote File Downloader</h1>
+    <input class="form-control"  [(ngModel)]="ipAddress" type="text" placeholder="Enter remote ipAddress">
+    <button style="margin-top: 10px;" class="btn btn-primary" (click)="getFiles()"> Connect Now!</button>
+
+  </div>
+
+</div>
+<br>
+  <br>
+
+  <div>
+    <h1 style="text-align: center">List of files</h1>
+  </div>
+  <div style="display: flex; justify-content: center">
+    <table class="table-bordered table-hover" style="width: 80%">
+      <tr>
+        <th>File Name</th>
+        <th>File Size</th>
+        <th>Create Data</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let file of files">
+        <td >{{file.name}}</td>
+        <td>{{file.stats.size}} Bytes</td>
+        <td>{{file.stats.ctime | date:'medium'}}</td>
+        <td><button class="btn btn-primary" (click)="downloadFile(file.name)">Download</button></td>
+        <td><button class="btn btn-danger" (click)="deleteFile(file.name)">Delete</button></td>
+      </tr>
+    </table>
+
+  </div>
+
+
+
+
+</div>
