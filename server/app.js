@@ -8,10 +8,13 @@ const router = new Router();
 const server = http.createServer(app);
 const port = 9000
 
+
+const directoryURL =__dirname + "/uploads";
+
 app.use(cors())
 app.get('/', function(req, res) {
     var directoryData = [];
-    fs.readdir(__dirname + "/uploads", (err, files) => {
+    fs.readdir(directoryURL, (err, files) => {
         for(let i=0;i <files.length;i++){   
             returnFileStats(files[i]).then((data)=>{
                 directoryData.push({
